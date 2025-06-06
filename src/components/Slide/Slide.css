@@ -1,0 +1,21 @@
+.Slide {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  padding: 2rem;
+  border-radius: 2rem;
+  background: #ffffff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+  color: #000000;
+  font-family: 'Fira Code', monospace;
+}
+
+.Slide-Syntax, .Slide-Example {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  h4 {
+    margin-right: 0.5rem;
+  }
+}
