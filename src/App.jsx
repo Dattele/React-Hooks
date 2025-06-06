@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import HookData from './data/HookData';
 import Slide from './components/Slide';
+import Hooks from './components/Hooks';
 
 import './App.css'
 
 export default function App() {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeHook, setActiveHook] = useState(null);
   
   return (
-    <Slide hook={HookData[activeIndex]} />
+    <div className='React-Hooks'>
+      <Hooks hookData={HookData} onClick={setActiveHook} />
+      {activeHook && (
+        <Slide hook={activeHook} onClose={() => setActiveHook(null)} />
+      )}
+    </div>
   );
 }

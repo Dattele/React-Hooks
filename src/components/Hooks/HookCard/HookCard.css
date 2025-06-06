@@ -1,0 +1,12 @@
+.Hook-Card {
+  cursor: pointer;
+  background: #ffffff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+  color: #000000;
+  font-family: 'Fira Code', monospace;
+  width: 250px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

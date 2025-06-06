@@ -82,8 +82,8 @@ const HookData = [
       }, [])`, 
     explanation: `The useEffect hook runs the effect on the component's initial render. 
       If a dependency array is provided, React will re-run the effect every time a dependency is updated. 
-      If the dependency array is empty, your setup function will not re-run, so the effect will only run on the initial render. 
-      If a dependency array is not provided, your setup function will re-run every time your component re-renders.`,
+      If the dependency array is empty, your effect will not re-run, so the effect will only run on the initial render. 
+      If a dependency array is not provided, your effect will re-run every time your component re-renders.`,
     link: 'https://react.dev/reference/react/useEffect',
   },
 ];
