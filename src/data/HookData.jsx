@@ -56,7 +56,7 @@ const HookData = [
     ],
     returns: [
       {
-        name: 'Cleanup function - optional',
+        name: 'cleanup function - optional',
         type: 'function or undefined',
         description: 'If a cleanup function is returned, React will run it before the effect runs again or before the component is unmounted.',
       },
@@ -68,7 +68,8 @@ const HookData = [
       'Setting up timeouts or intervals',
     ],
     exampleCode: 
-      `useEffect(() => {
+      `
+      useEffect(() => {
         const handleResize = () => {
           console.log('window has been re-sized to ', window.innerWidth);
         };
@@ -79,12 +80,57 @@ const HookData = [
         return () => {
           window.removeEventListener('resize', handleResize);
         };
-      }, [])`, 
+      }, [])
+      `, 
     explanation: `The useEffect hook runs the effect on the component's initial render. 
       If a dependency array is provided, React will re-run the effect every time a dependency is updated. 
       If the dependency array is empty, your effect will not re-run, so the effect will only run on the initial render. 
       If a dependency array is not provided, your effect will re-run every time your component re-renders.`,
     link: 'https://react.dev/reference/react/useEffect',
+  },
+  {
+    name: 'useRef',
+    description: 'Allows you to reference a value that persists across renders.',
+    syntax: 'const ref = useRef(initialValue)',
+    parameters: [
+      {
+        name: 'initialValue',
+        type: 'any',
+        description: "The initial value of the ref's current property.",
+      },
+    ],
+    returns: [
+      {
+        name: 'ref',
+        type: 'object',
+        description:`'An object that consists of the current property. Current is initially 
+        set as the initialValue and can be updated or re-assigned without re-rendering the component.`,
+      },
+    ],
+    useCases: [
+      'Accessing and interacting with DOM elements.',
+      'Storing mutable (can be changed) values that persist across renders.',
+      'Interacting with third-party libraries',
+      'Storing timeout/interval IDs.'
+    ],
+    exampleCode: 
+      `
+      const inputRef = useRef(null);
+      const handleClick = () => {
+        inputRef.current.focus();
+      }
+
+      return (
+        <>
+          <input ref={inputRef} />
+          <button onClick={handleClick}>Focus</button>
+        </>
+      )
+      `, 
+    explanation: `Refs can store information between re-renders. Updating 
+      your ref value will not cause your component to re-render, which means
+      they should not be used for displaying something on the screen.`,
+    link: 'https://react.dev/reference/react/useRef',
   },
 ];
 
