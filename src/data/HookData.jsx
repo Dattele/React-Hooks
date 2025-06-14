@@ -46,7 +46,7 @@ const HookData = [
         description: `Contains the Effect's logic. It may optionally return a cleanup function. 
           The cleanup function is used to remove or undo effects that are no longer needed, 
           preventing memory leaks. Cleanup functions may be used for actions, such as: 
-          canceling fetch requests, clearing timeouts or intervals, removing event listeners, and closing WebSocket conncetions.`,
+          canceling fetch requests, clearing timeouts or intervals, removing event listeners, and closing WebSocket connections.`,
       },
       {
         name: 'dependencies',
@@ -131,6 +131,51 @@ const HookData = [
       your ref value will not cause your component to re-render, which means
       they should not be used for displaying something on the screen.`,
     link: 'https://react.dev/reference/react/useRef',
+  },
+  {
+    name: 'useContext',
+    description: 'Allows you to read and subscribe to context ',
+    syntax: 'const value = useContext(SomeContext)',
+    parameters: [
+      {
+        name: 'SomeContext',
+        type: 'React.Context',
+        description: `The context that was created with createContext. 
+        This is the information that your components can read from.`,
+      },
+    ],
+    returns: [
+      {
+        name: 'value',
+        type: 'any',
+        description:`The Context value, which is provided by the nearest Provider 
+        above the component that calls it, so it only searches upwards. If no Provider is found, 
+        the returned value will be the default value that was passed into the createContext.`,
+      },
+    ],
+    useCases: [
+      'Sharing global state without using prop drilling',
+      'Managing themes (light/dark), user authentication, or localization (supporting multiple languages)',
+    ],
+    exampleCode: 
+      `
+      // Context.jsx
+      const ThemeContext = React.createContext('light');
+
+      // App.jsx
+      <ThemeContext.Provider value='dark'>
+        <ChildComponent />
+      </ThemeContext.Provider>
+
+      // ChildComponent.jsx
+      const theme = useContext(ThemeContext);
+      console.log(theme) // 'dark'
+      `, 
+    explanation: `The useContext hook lets you pass state down to components without prop 
+      drilling to each individual component. You can update context by declaring a state variable
+      in the parent component and passing the state down as the context value to the provider. Context 
+      is created with a default value, which will be used for cases where no providers are found.`,
+    link: 'https://react.dev/reference/react/useContext',
   },
 ];
 
