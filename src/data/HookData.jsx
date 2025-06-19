@@ -177,6 +177,86 @@ const HookData = [
       is created with a default value, which will be used for cases where no providers are found.`,
     link: 'https://react.dev/reference/react/useContext',
   },
+  {
+    name: 'useReducer',
+    description: 'Allows for complex and custom state logic',
+    syntax: 'const [state, dispatch] = useReducer(reducer, initialArg, init?)',
+    parameters: [
+      {
+        name: 'reducer',
+        type: 'function',
+        description: `The reducer function determines how the state updates. It receives the
+        current state and an action as arguments, and then returns the updated state.`,
+      },
+      {
+        name: 'initialArg',
+        type: 'any',
+        description: `This is the initial state of the reducer.`,
+      },
+      {
+        name: 'init',
+        type: 'function - optional',
+        description: `If the initializer function is provided, it sets the initial state to init(initialArg).`,
+      },
+    ],
+    returns: [
+      {
+        name: '[state, dispatch]',
+        type: 'array',
+        description:`Returns an array containing the current state and a dispatch function.
+        On the first render, the state is set to init(initialArg) if init is provided, or to 
+        initialArg if not. The dispatch function updates the state and re-renders the component.`,
+      },
+    ],
+    useCases: [
+      'Managing complex state logic (arrays, objects, or multiple fields).',
+      'Replacing multiple related useStates (recommended when managing 4 or more useStates).',
+      `Managing state values that depend on each other 
+      (for example: if isLoading, data, and error all change together).`,
+      'Shared State logic (using your reducer to update states in multiple components).',
+    ],
+    exampleCode: 
+      `
+      import { useReducer } from 'react';
+
+      const initialState = { pText: '', spanText: '' };
+
+      function reducer(state, action) {
+        switch (action.type) {
+          case 'UPDATE_TEXT': {
+            const { text1, text2 } = action.payload;
+            return {
+              ...state,
+              pText: text1,
+              spanText: text2,
+            }
+          }
+          default:
+            return state;
+        }
+      }
+
+      function myComponent() {
+        const [state, dispatch] = useReducer(reducer, initialState);
+
+        function updateText(text1, text2) {
+          dispatch({
+            type: 'UPDATE_TEXT',
+            payload: { text1, text2 },
+          });
+        }
+
+        updateText('Hello', 'There');
+      }  
+      `,
+    explanation: `The useReducer hook is an alternative to useState for managing more complex state. 
+    Instead of updating state directly, you dispatch an action to a reducer function that returns the updated state
+    and causes your component to re-render. 
+
+    The conventional way to write a reducer function is as a switch statement. Actions can consist of anything, 
+    but conventionally it contains a 'type' field. The reducer then matches the 'type' and returns the updated state.`,
+    link: 'https://react.dev/reference/react/useReducer',
+  },
 ];
 
 export default HookData;
