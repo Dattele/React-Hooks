@@ -179,7 +179,7 @@ const HookData = [
   },
   {
     name: 'useReducer',
-    description: 'Allows for complex and custom state logic',
+    description: 'Allows for complex and custom state logic.',
     syntax: 'const [state, dispatch] = useReducer(reducer, initialArg, init?)',
     parameters: [
       {
@@ -256,6 +256,54 @@ const HookData = [
     The conventional way to write a reducer function is as a switch statement. Actions can consist of anything, 
     but conventionally it contains a 'type' field. The reducer then matches the 'type' and returns the updated state.`,
     link: 'https://react.dev/reference/react/useReducer',
+  },
+  {
+    name: 'useMemo',
+    description: 'Caches the result of a calculation.',
+    syntax: 'const cachedValue = useMemo(calculateValue, dependencies)',
+    parameters: [
+      {
+        name: 'calculateValue',
+        type: 'function',
+        description: `A function that returns the value you want to cache. This function will
+        run on the initial render, and will only re-run if a dependency gets updated.`,
+      },
+      {
+        name: 'dependencies',
+        type: 'array',
+        description: `Your dependencies will be the reactive values used in the 
+        calculateValue function. Dependencies are used to update
+        the value stored from the calculateValue function.`,
+      },
+    ],
+    returns: [
+      {
+        name: 'cachedValue',
+        type: 'any',
+        description:`The result from the calculateValue function. The cached value is
+        updated anytime a dependency changes.`,
+      },
+    ],
+    useCases: [
+      'Caching expensive or heavy calculations in order to improve performance.',
+      "Avoiding components re-rendering when the component's props have not been updated.",
+      'Preventing an Effect from running too much.',
+      'Filtering/sorting large data sets, such as a large list.',
+    ],
+    exampleCode: 
+      `
+      const result = useMemo(() => {
+        return performCalculation(input1, input2);
+      }, [input1, input2]);
+      // Result will only recalculate if input1 or input2 change
+      `,
+    explanation: `The useMemo hook is used to optimize performance by caching the result
+    of a function. It accepts a calculation function - which takes no arguments - and a 
+    dependency array. If no dependencies get updated between renders, the previous cached
+    result will be returned without re-running the calculation function. If a dependency 
+    array is not added, the useMemo will run on every re-render, so a dependency array should
+    always be added to properly use useMemo.`,
+    link: 'https://react.dev/reference/react/useMemo',
   },
 ];
 
