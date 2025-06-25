@@ -1,5 +1,8 @@
-.React-Hooks {
+.React-Hooks-Wrapper {
   width: 100vw;
   height: 100vh;
+}
+
+.React-Hooks {
   padding-top: 2rem;
 }
