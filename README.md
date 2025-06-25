@@ -22,6 +22,8 @@ Click a card to dive into each hook and view detailed explanations, syntax, use 
 - `useState`
 - `useEffect`
 - `useRef`
+- `useContext`
+- `useReducer`
 
 ---
 
