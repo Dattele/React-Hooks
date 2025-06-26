@@ -259,7 +259,7 @@ const HookData = [
   },
   {
     name: 'useMemo',
-    description: 'Caches the result of a calculation.',
+    description: 'Caches the result of a calculation between re-renders.',
     syntax: 'const cachedValue = useMemo(calculateValue, dependencies)',
     parameters: [
       {
@@ -271,7 +271,7 @@ const HookData = [
       {
         name: 'dependencies',
         type: 'array',
-        description: `Your dependencies will be the reactive values used in the 
+        description: `Your dependencies are the reactive values used in the 
         calculateValue function. Dependencies are used to update
         the value stored from the calculateValue function.`,
       },
@@ -304,6 +304,72 @@ const HookData = [
     array is not added, the useMemo will run on every re-render, so a dependency array should
     always be added to properly use useMemo.`,
     link: 'https://react.dev/reference/react/useMemo',
+  },
+  {
+    name: 'useCallback',
+    description: 'Caches a function definition between re-renders.',
+    syntax: 'const cachedFn = useCallback(fn, dependencies)',
+    parameters: [
+      {
+        name: 'fn',
+        type: 'function',
+        description: `The function you want to cache. This function can take any arguments
+        and will be returned as declared unless a dependency changes.`,
+      },
+      {
+        name: 'dependencies',
+        type: 'array',
+        description: `Your dependencies are the reactive values used in the function. 
+        Dependencies are used to update the function.`,
+      },
+    ],
+    returns: [
+      {
+        name: 'cachedFn',
+        type: 'function',
+        description:`Returns the same fn function you passed in. This cached function will
+        be updated anytime a dependency changes.`,
+      },
+    ],
+    useCases: [
+      'Preventing unnecessary re-renders of your child components.',
+      'Optimizing performance by memoizing (caching) expensive or large functions.',
+      'Updating state with a callback function.',
+      'Optimizing functions in custom hooks by wrapping all of them in a callback.',
+      'Preventing an Effect from running too much.',
+    ],
+    exampleCode: 
+      `
+      // Memoized child component
+      const ChildButton = React.memo(({ onClick }) => {
+        console.log('ChildButton re-rendered');
+        return <button onClick={onClick}>Click me</button>;
+      });
+
+      function ParentComponent() {
+        const [count, setCount] = useState(0);
+
+        // Memoized callback to avoid re-rendering ChildButton
+        const handleClick = useCallback(() => {
+          console.log('Button clicked');
+        }, []); // No dependencies = stable reference
+
+        return (
+          <div>
+            <h2>Count: {count}</h2>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+
+            <ChildButton onClick={handleClick} />
+          </div>
+        );
+      }
+      `,
+    explanation: `The useCallback hook is used to optimize performance by caching a function that
+    only gets updated when a dependency changes. Callbacks can be used to pass in
+    functions to child components that are memoized with React.memo, or used for a function inside a dependency 
+    array (i.e.: useEffect or useMemo). Unlike useMemo, which caches values, useCallback caches functions 
+    to avoid unnecessary re-running a function that doesn't change at all.`,
+    link: 'https://react.dev/reference/react/useCallback',
   },
 ];
 
