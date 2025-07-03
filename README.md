@@ -25,6 +25,7 @@ Click a card to dive into each hook and view detailed explanations, syntax, use 
 - `useContext`
 - `useReducer`
 - `useMemo`
+- `useCallback`
 
 ---
 
