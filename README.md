@@ -1,5 +1,7 @@
 # React Hooks Explorer
 
+**This project is currently in progress**
+
 A modern, interactive reference guide for core React hooks - built with React, JavaScript, and CSS.  
 Click a card to dive into each hook and view detailed explanations, syntax, use cases, and examples.
 
@@ -34,24 +36,9 @@ Click a card to dive into each hook and view detailed explanations, syntax, use 
 - **React**
 - **JavaScript**
 - **CSS**
-- **Framer Motion** (planned)
 
 ---
 
-## Running the Project
+## Viewing the Project
 
-### Clone the repo
-
-git clone [url]
-
-### Navigate to repository
-
-cd react-hooks-explorer
-
-### Install dependencies
-
-npm install
-
-### Start development server
-
-npm run dev
+https://reacthooksexplorer.netlify.app/
