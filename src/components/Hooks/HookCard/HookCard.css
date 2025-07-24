@@ -1,8 +1,6 @@
 .Hook-Card {
   cursor: pointer;
-  background: #ffffff;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
-  color: #000000;
   font-family: 'Fira Code', monospace;
   width: 250px;
   height: 150px;
@@ -11,4 +9,5 @@
   justify-content: center;
   justify-self: center;
   margin-bottom: 4rem;
+  border-radius: 5px;
 }
