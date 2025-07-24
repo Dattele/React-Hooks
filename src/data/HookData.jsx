@@ -371,6 +371,71 @@ const HookData = [
     to avoid unnecessary re-running a function that doesn't change at all.`,
     link: 'https://react.dev/reference/react/useCallback',
   },
+  {
+    name: 'useActionState',
+    description: "Allows you to manage state based on the result of a form or button action.",
+    syntax: 'const [state, formAction, isPending] = useActionState(fn, initialState, permalink?)',
+    parameters: [
+      {
+        name: 'fn',
+        type: 'function',
+        description: `The function that is called when the form is submitted or the button is 
+        pressed. This function receives the previous state of the form as its initial argument, 
+        which is followed by the rest of the arguments that a form action receives.`,
+      },
+      {
+        name: 'initialState',
+        type: 'any',
+        description: `The initial value of the state.`,
+      },
+      {
+        name: 'permalink',
+        type: 'string - optional',
+        description: `A unique page URL that the form modifies. Useful for ensuring state consistency across navigation.`,
+      },
+    ],
+    returns: [
+      {
+        name: '[state, formAction, isPending]',
+        type: 'array',
+        description:`Returns an array that consists of the current state, a new action to update the state and can 
+        be passed as a form's action prop or as a button's formAction prop, 
+        and a isPending flag to check if there is a pending transition (such as the form submission).`,
+      },
+    ],
+    useCases: [
+      'Handling form submissions.',
+      'Displaying form errors.',
+      `Managing UI state for user actions, such as displaying 'Loading...' while waiting 
+      for the action to complete.`,
+    ],
+    exampleCode: 
+      `
+     async function increment(previousState, formData) {
+      return previousState + 1;
+     }
+
+     function StatefulForm({}) {
+      const [state, formAction] = useActionState(increment, 0);
+      return (
+        <form>
+          {state}
+          <button formAction={formAction}>Increment</button>
+        </form>
+      )
+     }
+      `,
+    explanation: `The useActionState hook manages state that updates based on a user's action, 
+    primarily a form submission. Instead of using useState with event handlers, you provide a 
+    function that updates the state and then React will call this function when the action is 
+    triggered, which passes the in the current state and any existing form data.
+  
+    The useActionState hook returns an array containing:
+    - The current state.
+    - An action/formAction function to attach to a form or button.
+    - An isPending flag, which indicates whether the action is running or completed.`,
+    link: 'https://react.dev/reference/react/useActionState',
+  },
 ];
 
 export default HookData;
