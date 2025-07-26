@@ -436,6 +436,43 @@ const HookData = [
     - An isPending flag, which indicates whether the action is running or completed.`,
     link: 'https://react.dev/reference/react/useActionState',
   },
+  {
+    name: 'useId',
+    description: "Generates a unique id for accessibility attributes or element identifiers",
+    syntax: 'const id = useId()',
+    parameters: [],
+    returns: [
+      {
+        name: 'id',
+        type: 'string',
+        description:`Returns a unique ID that is consistent between server and client rendering.`,
+      },
+    ],
+    useCases: [
+      'Generating unique IDs for form elements and associating labels with inputs, like a password input.',
+      'Generating related IDs for accessibility attributes, like aria-describedby and aria-labelledby.',
+      'Avoiding hardcoded IDs when rendering multiple components on a page.',
+    ],
+    exampleCode: 
+      `
+      const PasswordField = () => {
+        const passwordId = useId();
+        const hintId = useId();
+
+        return (
+          <div>
+            <label htmlFor={passwordId}>Password: </label>
+            <input id={passwordId} type="password" aria-describedby={hintId} />
+            <p id={hintId}>Password must be at least 8 characters long</p>
+          </div>
+        )
+      }
+      `,
+    explanation: `The useId hook generates a unique, stable ID string that can be used for element identifiers and accessibility attributes. 
+    It is particularly useful with server-side rendering by ensuring that the server and client generate identical IDs, 
+    preventing mismatches during hydration. Unlike random IDs, useId guarantees consistency between renders and across environments.`,
+    link: 'https://react.dev/reference/react/useId',
+  },
 ];
 
 export default HookData;
