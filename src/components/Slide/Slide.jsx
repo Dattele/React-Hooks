@@ -1,8 +1,10 @@
 import React from "react";
 
+import CloseIcon from "../../assets/images/icon_close.svg";
+
 import "./Slide.css";
 
-const Slide = ({ hook }) => {
+const Slide = ({ hook, onClose }) => {
   return (
     <div className="Slide-Wrapper">
       <div className="Slide">
@@ -62,6 +64,7 @@ const Slide = ({ hook }) => {
         </div>
 
         <p>{hook.explanation}</p>
+        <CloseIcon onClick={onClose} />
       </div>
     </div>
   );
