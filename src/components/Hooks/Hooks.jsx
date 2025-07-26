@@ -1,7 +1,7 @@
 import React from "react";
 import HookCard from "./HookCard";
 
-import './Hooks.css';
+import "./Hooks.css";
 
 const Hooks = ({ hookData, onClick }) => {
   return (
@@ -11,6 +11,6 @@ const Hooks = ({ hookData, onClick }) => {
       ))}
     </div>
   );
-}
+};
 
 export default Hooks;

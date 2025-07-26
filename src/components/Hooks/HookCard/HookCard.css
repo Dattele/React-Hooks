@@ -1,7 +1,7 @@
 .Hook-Card {
   cursor: pointer;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   width: 250px;
   height: 150px;
   display: flex;

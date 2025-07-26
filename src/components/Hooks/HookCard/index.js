@@ -1,1 +1,1 @@
-export { default } from './HookCard';
+export { default } from "./HookCard";

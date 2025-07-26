@@ -10,8 +10,10 @@
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: 'Poppins', sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .Slide {

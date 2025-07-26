@@ -16,10 +16,11 @@
   display: flex;
   flex-direction: column;
   padding: 3rem;
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
 }
 
-.Slide-Syntax, .Slide-Example {
+.Slide-Syntax,
+.Slide-Example {
   display: flex;
   flex-direction: row;
   align-items: center;

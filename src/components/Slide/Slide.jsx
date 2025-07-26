@@ -1,17 +1,19 @@
-import React from 'react';
+import React from "react";
 
-import './Slide.css';
+import "./Slide.css";
 
 const Slide = ({ hook }) => {
   return (
-    <div className='Slide-Wrapper'>
-      <div className='Slide'>
+    <div className="Slide-Wrapper">
+      <div className="Slide">
         <h2>{hook.name}</h2>
         <p>{hook.description}</p>
 
-        <div className='Slide-Syntax'>
+        <div className="Slide-Syntax">
           <h4>Syntax:</h4>
-          <pre><code>{hook.syntax}</code></pre>
+          <pre>
+            <code>{hook.syntax}</code>
+          </pre>
         </div>
 
         {hook.parameters && (
@@ -20,7 +22,8 @@ const Slide = ({ hook }) => {
             <ul>
               {hook.parameters.map((param, i) => (
                 <li key={i}>
-                  <strong>{param.name}</strong> ({param.type}): {param.description}
+                  <strong>{param.name}</strong> ({param.type}):{" "}
+                  {param.description}
                 </li>
               ))}
             </ul>
@@ -51,15 +54,17 @@ const Slide = ({ hook }) => {
           </>
         )}
 
-        <div className='Slide-Example'>
+        <div className="Slide-Example">
           <h4>Example Code:</h4>
-          <pre><code>{hook.exampleCode}</code></pre>
+          <pre>
+            <code>{hook.exampleCode}</code>
+          </pre>
         </div>
 
         <p>{hook.explanation}</p>
       </div>
     </div>
   );
-}
+};
 
 export default Slide;
