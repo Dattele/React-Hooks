@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import CloseIcon from "../../assets/images/icon_close.svg";
 
 import "./Slide.css";
 
 const Slide = ({ hook, onClose }) => {
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        onClose();
+      }
+    }
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    // Clean up function
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+  }, [onClose]);
+
   return (
-    <div className="Slide-Wrapper">
+    <div className="Slide-Wrapper" ref={wrapperRef} onClick={(e) => e.stopPropagation()}>
       <div className="Slide">
         <h2>{hook.name}</h2>
         <p>{hook.description}</p>
