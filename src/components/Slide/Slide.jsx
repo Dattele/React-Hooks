@@ -12,17 +12,21 @@ const Slide = ({ hook, onClose }) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
         onClose();
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener("mousedown", handleOutsideClick);
     // Clean up function
     return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    }
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
   }, [onClose]);
 
   return (
-    <div className="Slide-Wrapper" ref={wrapperRef} onClick={(e) => e.stopPropagation()}>
+    <div
+      className="Slide-Wrapper"
+      ref={wrapperRef}
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className="Slide">
         <h2>{hook.name}</h2>
         <p>{hook.description}</p>

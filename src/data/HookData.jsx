@@ -472,6 +472,52 @@ const HookData = [
     preventing mismatches during hydration. Unlike random IDs, useId guarantees consistency between renders and across environments.`,
     link: "https://react.dev/reference/react/useId",
   },
+  {
+    name: "useTransition",
+    description:
+      "Marks state updates as non-urgent so React can keep the UI responsive while rendering them in the background.",
+    syntax: "const [isPending, startTransition] = useTransition()",
+    parameters: [],
+    returns: [
+      {
+        name: "[isPending, startTransition]",
+        type: "array",
+        description: `Returns an array consisting of the isPending flag, which tells you if there is a pending transition 
+        and the startTransition function, which lets you mark an update as a transition. The startTransition function 
+        takes in an action, which is a function for updating state by calling set functions.`,
+      },
+    ],
+    useCases: [
+      "Performing non-blocking updates with actions",
+      "Managing Complex Form Submissions",
+      "Filtering/sorting big lists or tables without freezing the input.",
+      "Progressive UI: show a spinner/skeleton while the heavier part re-renders.",
+      "Rendering charts or expensive derived UI while keeping controls responsive.",
+    ],
+    exampleCode: `
+      import {useState, useTransition} from 'react';
+      import {updateQuantity} from './api';
+
+      function CheckoutForm() {
+        const [isPending, startTransition] = useTransition();
+        const [quantity, setQuantity] = useState(1);
+
+        function onSubmit(newQuantity) {
+          startTransition(async function () {
+            const savedQuantity = await updateQuantity(newQuantity);
+            startTransition(() => {
+              setQuantity(savedQuantity);
+            });
+          });
+        }
+      }
+      `,
+    explanation: `useTransition allows you to separate urgent (like typing into a text field) and non-urgent updates 
+      (like rendering heavy UI). React will prioritize urgent updates to keep the interface responsive. So, if a new
+      urgent update arrives, it will interrupt the transition and then restart it. While the non-urgent updates render 
+      in the background, the isPending flag will be true, which you can use to show a loading indicator or disable non-critical UI.`,
+    link: "https://react.dev/reference/react/useTransition",
+  },
 ];
 
 export default HookData;
