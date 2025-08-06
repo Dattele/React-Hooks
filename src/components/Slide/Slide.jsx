@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
-import CloseIcon from "../../assets/images/icon_close.svg";
+import CloseIcon from '../../assets/images/icon_close.svg';
 
-import "./Slide.css";
+import './Slide.css';
 
 const Slide = ({ hook, onClose }) => {
   const wrapperRef = useRef(null);
@@ -14,24 +14,24 @@ const Slide = ({ hook, onClose }) => {
       }
     };
 
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener('mousedown', handleOutsideClick);
     // Clean up function
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [onClose]);
 
   return (
     <div
-      className="Slide-Wrapper"
+      className='Slide-Wrapper'
       ref={wrapperRef}
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="Slide">
+      <div className='Slide'>
         <h2>{hook.name}</h2>
         <p>{hook.description}</p>
 
-        <div className="Slide-Syntax">
+        <div className='Slide-Syntax'>
           <h4>Syntax:</h4>
           <pre>
             <code>{hook.syntax}</code>
@@ -44,7 +44,7 @@ const Slide = ({ hook, onClose }) => {
             <ul>
               {hook.parameters.map((param, i) => (
                 <li key={i}>
-                  <strong>{param.name}</strong> ({param.type}):{" "}
+                  <strong>{param.name}</strong> ({param.type}):{' '}
                   {param.description}
                 </li>
               ))}
@@ -76,7 +76,7 @@ const Slide = ({ hook, onClose }) => {
           </>
         )}
 
-        <div className="Slide-Example">
+        <div className='Slide-Example'>
           <h4>Example Code:</h4>
           <pre>
             <code>{hook.exampleCode}</code>
