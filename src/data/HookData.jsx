@@ -552,6 +552,57 @@ const HookData = [
     custom hooks by displaying the custom hook's state and behavior.`,
     link: 'https://react.dev/reference/react/useDebugValue',
   },
+  {
+    name: 'useDeferredValue',
+    description: 'Allows you to defer rendering a non-urgent part of the UI.',
+    syntax: 'const deferredValue = useDeferredValue(value)',
+    parameters: [
+      {
+        name: 'value',
+        type: 'any',
+        description: `The value you want to defer. React will delay rendering updates that use this value during urgent transitions.`,
+      },
+      {
+        name: 'initialValue',
+        type: 'any - optional',
+        description: `The value you want to defer on the component's initial render.`,
+      },
+    ],
+    returns: [
+      {
+        name: 'currentValue',
+        type: 'any',
+        description: `The deferred value. React updates it less urgently than the original value.`,
+      },
+    ],
+    useCases: [
+      'Showing stale content while fresh content is loading.',
+      'Autocomplete Search.',
+      'Delaying expensive UI updates like filtered lists or images.',
+    ],
+    exampleCode: `
+      export default function App() {
+        const [query, setQuery] = useState('');
+        const deferredQuery = useDeferredValue(query);
+        return (
+          <>
+            <label>
+              Search albums:
+              <input value={query} onChange={e => setQuery(e.target.value)} />
+            </label>
+            <Suspense fallback={<h2>Loading...</h2>}>
+              <SearchResults query={deferredQuery} />
+            </Suspense>
+          </>
+        );
+      }
+      `,
+    explanation: `The useDeferredValue hook lets you postpone rendering non-urgent updates to avoid blocking the user interface.
+    It's useful for keeping the UI responsive during interactions like typing or scrolling. It returns a "lagging" version
+    of the value that only updates after higher-priority values render. It does not trigger
+    re-renders on its own, so it's meant to be passed into child components or used in rendering logic.`,
+    link: 'https://react.dev/reference/react/useDeferredValue',
+  },
 ];
 
 export default HookData;
