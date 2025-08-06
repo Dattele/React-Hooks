@@ -512,7 +512,7 @@ const HookData = [
         }
       }
       `,
-    explanation: `useTransition allows you to separate urgent (like typing into a text field) and non-urgent updates 
+    explanation: `The useTransition hook allows you to separate urgent (like typing into a text field) and non-urgent updates 
       (like rendering heavy UI). React will prioritize urgent updates to keep the interface responsive. So, if a new
       urgent update arrives, it will interrupt the transition and then restart it. While the non-urgent updates render 
       in the background, the isPending flag will be true, which you can use to show a loading indicator or disable non-critical UI.`,
