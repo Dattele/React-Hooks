@@ -603,6 +603,51 @@ const HookData = [
     re-renders on its own, so it's meant to be passed into child components or used in rendering logic.`,
     link: 'https://react.dev/reference/react/useDeferredValue',
   },
+  {
+    name: 'useImperativeHandle',
+    description:
+      'Lets you exposes functions and methods to the parent component as a ref.',
+    syntax: 'useImperativeHandle(ref, createHandle, dependencies?)',
+    parameters: [
+      {
+        name: 'ref',
+        type: 'ref',
+        description: `The forwarded ref being passed in.`,
+      },
+      {
+        name: 'createHandle',
+        type: 'function',
+        description: `A function that takes no arguments and returns the functions/methods you want exposed to the parent.`,
+      },
+      {
+        name: 'dependencies',
+        type: 'array - optional',
+        description: `The reactive values used in the createHandle function. Re-creates the handle when any dependency changes.`,
+      },
+    ],
+    returns: [],
+    useCases: [
+      'Exposing specific functions/methods to the parent component.',
+      'Allowing the parent to call imperative methods like focus(), reset(), or play().',
+      'Exposing functions from third party libraries into your component.',
+    ],
+    exampleCode: `
+      // In Child
+      useImperativeHandle(ref, () => ({
+        getValue: () => {
+          return internalRef.current.value;
+        }
+      }));
+
+      // In Parent
+      const handleClick = () => {
+        const value = childRef.current.getValue();
+      };
+      `,
+    explanation: `The useImperativeHandle hook lets you expose functions and methods from a child component
+    to a parent component, which allows the parent to use those.`,
+    link: 'https://react.dev/reference/react/useImperativeHandle',
+  },
 ];
 
 export default HookData;
