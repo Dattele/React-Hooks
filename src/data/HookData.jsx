@@ -717,6 +717,63 @@ const HookData = [
     the UI shows the current state.`,
     link: 'https://react.dev/reference/react/useOptimistic',
   },
+  {
+    name: 'useSyncExternalStore',
+    description: 'Allows you to subscribe to an external store.',
+    syntax:
+      'const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)',
+    parameters: [
+      {
+        name: 'subscribe',
+        type: 'function',
+        description: `A function that takes in a callback that gets called whenever the store changes. Returns a clean up function 
+        that unsubscribes from the store.`,
+      },
+      {
+        name: 'getSnapshot',
+        type: 'function',
+        description: `A function that returns the current value from the store.`,
+      },
+      {
+        name: 'getServerSnapshot',
+        type: 'function - optional',
+        description: `A function that returns the initial snapshot used during server rendering. This ensures server and client renders match.`,
+      },
+    ],
+    returns: [
+      {
+        name: 'snapshot',
+        type: 'any',
+        description: `The current snapshot of the store. The component will re-render whenever this snapshot changes.`,
+      },
+    ],
+    useCases: [
+      'Subscribing to external data sources such as Redux, Zustand, or custom stores.',
+      'Listening to WebSockets or real-time events with consistent updates.',
+    ],
+    exampleCode: `
+      import { useSyncExternalStore } from 'react';
+
+      // Example: subscribe to window size changes
+      function subscribe(callback) {
+        window.addEventListener('resize', callback);
+        return () => window.removeEventListener('resize', callback);
+      }
+
+      function getSnapshot() {
+        return window.innerWidth;
+      }
+
+      export default function WindowWidth() {
+        const width = useSyncExternalStore(subscribe, getSnapshot);
+        return <p>Window width: {width}px</p>;
+      }
+      `,
+    explanation: `The useSyncExternalStore hook allows you to safely subscribe to external stores. 
+    You provide a subscribe function to listen for store changes, a getSnapshot function to get 
+    the store's current value on the client, and optionally a getServerSnapshot for server rendering.`,
+    link: 'https://react.dev/reference/react/useSyncExternalStore',
+  },
 ];
 
 export default HookData;

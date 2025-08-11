@@ -2,7 +2,7 @@
   cursor: pointer;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
   font-family: 'Fira Code', monospace;
-  width: 250px;
+  width: 275px;
   height: 125px;
   display: flex;
   align-items: center;
@@ -17,12 +17,15 @@
     margin-bottom: 2rem;
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 960px) {
     margin-bottom: 3rem;
+    width: 275px;
+    height: 150px;
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1280px) {
     margin-bottom: 4rem;
+    width: 275px;
     height: 150px;
   }
 }
