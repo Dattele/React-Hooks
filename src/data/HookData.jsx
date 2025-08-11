@@ -648,6 +648,75 @@ const HookData = [
     to a parent component, which allows the parent to use those.`,
     link: 'https://react.dev/reference/react/useImperativeHandle',
   },
+  {
+    name: 'useOptimistic',
+    description:
+      'Allows you to show an optimistic (temporary) state while an async action is in progress.',
+    syntax:
+      'const [optimisticState, addOptimistic] = useOptimistic(state, updateFn)',
+    parameters: [
+      {
+        name: 'state',
+        type: 'any',
+        description: `The current value to be returned when the action is not pending.`,
+      },
+      {
+        name: 'updateFn(currentState, optimisticValue)',
+        type: 'function',
+        description: `A function that takes in the current state and the optimistic value, and then returns 
+        the optmistic state, which is used during the pending action.`,
+      },
+    ],
+    returns: [
+      {
+        name: 'optimisticState',
+        type: 'any',
+        description: `The temporary state shown during the async action. When no action is pending, it matches the normal state.`,
+      },
+      {
+        name: 'addOptimistic',
+        type: 'function',
+        description: `A function that triggers an optimistic update. It calls the updateFn function
+        with the optimistic value and the current state.`,
+      },
+    ],
+    useCases: [
+      'Optimistically updating forms.',
+      'Optimistically adding an item to a list before the server loads it in.',
+      'Providing instant visual feedback for slow operations like network requests.',
+    ],
+    exampleCode: `
+      // State
+      const [comments, setComments] = useState([
+        { id: 1, text: "First comment!" },
+        { id: 2, text: "React is awesome!" }
+      ]);
+
+      // Optimistic state: starts out as the comments state
+      const [optimisticComments, addOptimisticComment] = useOptimistic(
+        comments,
+        (state, newCommentText) => [
+          ...state,
+          { id: Date.now(), text: newCommentText, optimistic: true }
+        ]
+      );
+
+      async function handleAddComment(formData) {
+        const text = formData.get("comment");
+        addOptimisticComment(text); // Show immediately
+
+        // Simulate server save
+        await new Promise((res) => setTimeout(res, 1000));
+
+        setComments((prev) => [...prev, { id: Date.now(), text }]);
+      }
+      `,
+    explanation: `The useOptimistic hook is used when you want to immediately reflect a change in the UI 
+    before an async action finishes. It takes your current state and an update function that merges in the 
+    optimistic value. While the async action is pending, the UI shows the optimistic state, and when it completes, 
+    the UI shows the current state.`,
+    link: 'https://react.dev/reference/react/useOptimistic',
+  },
 ];
 
 export default HookData;
